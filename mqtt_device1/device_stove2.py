@@ -22,9 +22,9 @@ client.subscribe(f'v1/{user}/things/{client_id}/cmd/5')
 client.loop_start()
 
 # System behavior
-
-client.publish(f'v1/{user}/things/{client_id}/data/3', temperature_st2())
-client.publish(f'v1/{user}/things/{client_id}/data/4', humidity_st2())
-time.sleep(100)
+while True:
+    client.publish(f'v1/{user}/things/{client_id}/data/3', temperature_st2())
+    client.publish(f'v1/{user}/things/{client_id}/data/4', humidity_st2())
+    time.sleep(100)
 
 # client.disconnect()

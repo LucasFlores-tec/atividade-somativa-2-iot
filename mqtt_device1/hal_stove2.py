@@ -1,14 +1,14 @@
 import random
 
-temperature = random.randrange(20, 40)
-
 
 def temperature_st2():
-    return temperature
+    return random.randrange(20, 40)
 
 
 def temperature_st2_stON():
-    return temperature + 1
+    temp = random.randrange(20, 40)
+    temp = temp + 1
+    return temp
 
 
 def humidity_st2():
