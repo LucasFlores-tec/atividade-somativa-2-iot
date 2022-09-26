@@ -1,6 +1,6 @@
 import paho.mqtt.client as mqtt
 import time
-from hal_stove2 import temperature_st2, temperature_st2_stON, humidity_st2, heater_st2
+from hal_stove2 import temperature_st2, humidity_st2, heater_st2, tempController2
 from definitions_stove2 import user, password, client_id, server, port
 
 
@@ -9,6 +9,7 @@ def message(client, userData, msg):
     vetor = msg.payload.decode().split(',')
     heater_st2('on' if vetor[1] == '1' else 'off')
     client.publish(f'v1/{user}/things/{client_id}/response', f'ok,{vetor[0]}')
+    tempController2(temperature_st2())
 
 
 # Start the connection
@@ -25,6 +26,6 @@ client.loop_start()
 while True:
     client.publish(f'v1/{user}/things/{client_id}/data/3', temperature_st2())
     client.publish(f'v1/{user}/things/{client_id}/data/4', humidity_st2())
-    time.sleep(100)
+    time.sleep(3)
 
 # client.disconnect()
